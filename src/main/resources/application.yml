@@ -1,1 +1,18 @@
-spring.application.name=AI-Powered Mental Health Assistant
+spring:
+  application:
+    name: AI-Powered Mental Health Assistant
+
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/mental_health?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+jwt:
+  # 生产环境请通过 JWT_SECRET 环境变量配置随机且足够长的密钥
+  secret: ${JWT_SECRET:change-this-jwt-secret-key-in-production}
+  # Token 有效期，单位：毫秒，默认 24 小时
+  expiration: ${JWT_EXPIRATION:86400000}
+  # 请求头名称及其认证前缀
+  header: ${JWT_HEADER:Authorization}
+  prefix: ${JWT_PREFIX:Bearer }
