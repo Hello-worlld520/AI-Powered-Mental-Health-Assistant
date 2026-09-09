@@ -1,5 +1,8 @@
 package org.example.aipoweredmentalhealthassistant.util;
+/*JwtUtil
+作用是：
 
+提供 JWT 的底层生成、验证和解析功能。*/
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
