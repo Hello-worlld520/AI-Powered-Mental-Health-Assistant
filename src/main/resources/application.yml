@@ -16,3 +16,10 @@ jwt:
   # 请求头名称及其认证前缀
   header: ${JWT_HEADER:Authorization}
   prefix: ${JWT_PREFIX:Bearer }
+
+ai:
+  silicon-flow:
+    base-url: ${SILICONFLOW_BASE_URL:https://api.siliconflow.cn/v1}
+    api-key: ${SILICONFLOW_API_KEY:}
+    model: ${SILICONFLOW_MODEL:tencent/Hunyuan-MT-7B}
+    max-tokens: ${SILICONFLOW_MAX_TOKENS:4096}
