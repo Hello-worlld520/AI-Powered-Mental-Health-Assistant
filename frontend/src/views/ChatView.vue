@@ -58,7 +58,12 @@ function logout() {
 }
 
 onMounted(async () => {
-  await auth.fetchUser().catch(() => {})
+  try {
+    await auth.fetchUser()
+  } catch {
+    await router.replace({ name: 'login', query: { redirect: '/' } })
+    return
+  }
   await chat.loadSessions()
   await scrollToBottom()
 })

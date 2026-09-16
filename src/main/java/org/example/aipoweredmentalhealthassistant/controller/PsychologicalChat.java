@@ -1,5 +1,5 @@
 package org.example.aipoweredmentalhealthassistant.controller;
-
+//处理心理聊天相关的 HTTP 请求。比如：发消息、拉取历史消息、创建会话等。
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;

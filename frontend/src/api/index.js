@@ -20,17 +20,11 @@ async function request(path, options = {}) {
   })
 
   const contentType = response.headers.get('content-type') || ''
-  if (!contentType.includes('application/json')) {
-    if (!response.ok) {
-      throw new Error(`请求失败（${response.status}）`)
-    }
-    return null
-  }
-
-  const payload = await response.json()
-  if (payload.code !== '200') {
-    const error = new Error(payload.msg || '请求失败')
-    error.code = payload.code
+  const payload = contentType.includes('application/json') ? await response.json() : null
+  if (!response.ok || payload?.code !== '200') {
+    const error = new Error(payload?.msg || `请求失败（${response.status}）`)
+    error.status = response.status
+    error.code = payload?.code || String(response.status)
     throw error
   }
   return payload.data

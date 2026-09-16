@@ -20,8 +20,15 @@ export const useAuthStore = defineStore('auth', {
     },
     async fetchUser() {
       if (!this.token) return
-      this.user = await getCurrentUser()
-      localStorage.setItem('user', JSON.stringify(this.user))
+      try {
+        this.user = await getCurrentUser()
+        localStorage.setItem('user', JSON.stringify(this.user))
+      } catch (error) {
+        if (error.code === '401' || error.code === '403') {
+          this.logout()
+        }
+        throw error
+      }
     },
     logout() {
       this.token = ''
